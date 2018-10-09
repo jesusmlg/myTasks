@@ -15,12 +15,15 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',255);
-            $table->text('description');
-            $table->integer('user_id');
-            $table->enum('category',['work','home','hobby']);
-            $table->integer('state',['pending','done','canceled']);
-            $table->integer('priority',['log','medium','high']);
+            $table->string('title', 255);
+            $table->text('description');            
+            $table->enum('category', ['work','home','hobby']);
+            $table->enum('state', ['pending','done','canceled']);
+            $table->enum('priority', ['low','medium','high']);            
+
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

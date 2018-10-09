@@ -2,29 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
 use Illuminate\Http\Request;
+use App\Task;
+use App\Priority;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return [
+            'tasks' => Task::where('user_id',auth()->id())
+                            ->where('state','<>','done')
+                            ->where('category',$request->category)
+                            ->orderBy('created_at','DESC')
+                            ->get(),
+            'priorities' => Priority::getPriorities()
+        ];
     }
 
     /**
@@ -35,51 +39,43 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task();
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->priority = $request->priority;
+        $task->category = $request->category; 
+        $task->state = "pending";
+        $task->user_id = auth()->id();
+        
+        $task->save();
+
+        return $task;
+
     }
 
     /**
-     * Display the specified resource.
+     * Complete the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function complete($id)
     {
-        //
-    }
+        $task = Task::find($id);
+        $task->state = "done";
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Task $task)
-    {
-        //
+        $task->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        Task::find($id)->destroy();
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::apiResource('tasks','TaskController');
+
+//combo categories
+
+Route::get('/categories',function(){
+    return response()->json(Category::getCategories());
+});
