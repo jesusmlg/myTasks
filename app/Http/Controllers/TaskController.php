@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -22,10 +21,10 @@ class TaskController extends Controller
     {
 
         return [
-            'tasks' => Task::where('user_id',auth()->id())
-                            ->where('state','<>','done')
-                            ->where('category',$request->category)
-                            ->orderBy('created_at','DESC')
+            'tasks' => Task::where('user_id', auth()->id())
+                            ->where('state', '<>', 'done')
+                            ->where('category', $request->category)
+                            ->orderBy('created_at', 'DESC')
                             ->get(),
             'priorities' => Priority::getPriorities()
         ];
@@ -60,12 +59,13 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function complete($id)
+    public function complete(Task $task)
     {
-        $task = Task::find($id);
+        //$task = Task::find($id);
         $task->state = "done";
-
         $task->save();
+
+        return response()->json(['result' => 'ok']);
     }
 
     /**

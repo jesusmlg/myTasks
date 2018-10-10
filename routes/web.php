@@ -13,18 +13,17 @@ use App\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::apiResource('tasks','TaskController');
+Route::apiResource('tasks', 'TaskController');
+Route::post('/tasks/{task}/complete', 'TaskController@complete');
 
 //combo categories
 
-Route::get('/categories',function(){
+Route::get('/categories', function() {
     return response()->json(Category::getCategories());
 });

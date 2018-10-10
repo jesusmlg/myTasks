@@ -10476,11 +10476,43 @@ a.text-dark:focus {
   background-color: #d4ffd3;
 }
 
+.div-low:hover {
+  background-color: #d4ffd386;
+}
+
 .div-medium {
   background-color: #fffbd3;
 }
 
+.div-medium:hover {
+  background-color: #fffbd386;
+}
+
 .div-high {
   background-color: #ffd3d3;
+}
+
+.div-high:hover {
+  background-color: #ffd3d386;
+}
+
+.task-description {
+  margin-top: 10px;
+}
+
+.task-title {
+  margin-right: 5px;
+}
+
+.task-btn {
+  background-color: rgba(206, 237, 255, 0);
+  border: 1px solid #888888;
+  color: #888888;
+}
+
+.task-btn:hover {
+  background-color: #fd3030;
+  color: #fff;
+  border: 1px solid #fd3030;
 }
 

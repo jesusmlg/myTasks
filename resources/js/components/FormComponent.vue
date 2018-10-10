@@ -15,9 +15,9 @@
             </option>
           </select>
         </div>
-        categoria {{ this.category}}
+
         <div class="col-2">
-          <button class="btn btn-primary">Add</button> 
+          <button class="btn btn-primary btn-block">Add Task</button> 
         </div>
       </div>
     </form>
@@ -45,7 +45,7 @@
         const params = {
           title: this.title,
           description: this.description,
-          category: 'WORK',
+          category: this.category,
           priority: this.priority
         };
         
@@ -58,8 +58,7 @@
         this.title = "";
         this.description ="";
 
-        
-        
+        this.$emit('newTask');
       }
     }
   }
