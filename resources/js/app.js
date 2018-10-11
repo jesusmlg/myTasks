@@ -23,4 +23,5 @@ Vue.component("category-component", require("./components/CategoryComponent.vue"
 
 const app = new Vue({
     el: '#app'
+
 });

@@ -25,7 +25,7 @@
         },
         methods:{
             onClickCompleteTask(){
-                axios.post('/tasks/'+this.task.id+"/complete").then((response) =>{
+                axios.post(miUrl+'/tasks/'+this.task.id+"/complete").then((response) =>{
                     console.log(response.data);
                 });
 

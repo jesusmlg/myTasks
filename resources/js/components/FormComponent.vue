@@ -49,7 +49,7 @@
           priority: this.priority
         };
         
-        axios.post('/tasks',params).then((response)=>{
+        axios.post(miUrl+'/tasks',params).then((response)=>{
           console.log(response);
           //let task = reponse;
         });

@@ -14019,6 +14019,7 @@ Vue.component("category-component", __webpack_require__(49));
 
 var app = new Vue({
   el: '#app'
+
 });
 
 /***/ }),
@@ -47371,7 +47372,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onClickCompleteTask: function onClickCompleteTask() {
-            axios.post('/tasks/' + this.task.id + "/complete").then(function (response) {
+            axios.post(miUrl + '/tasks/' + this.task.id + "/complete").then(function (response) {
                 console.log(response.data);
             });
 
@@ -47544,7 +47545,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         priority: this.priority
       };
 
-      axios.post('/tasks', params).then(function (response) {
+      axios.post(miUrl + '/tasks', params).then(function (response) {
         console.log(response);
         //let task = reponse;
       });
@@ -47813,7 +47814,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadTasks: function loadTasks() {
             var _this2 = this;
 
-            axios.get('/tasks', { params: { 'category': this.category } }).then(function (response) {
+            axios.get(miUrl + '/tasks', { params: { 'category': this.category } }).then(function (response) {
                 _this2.tasks = response.data.tasks;
                 _this2.priorities = response.data.priorities;
             });
@@ -47998,7 +47999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/categories').then(function (response) {
+    axios.get(miUrl + '/categories').then(function (response) {
       _this.categories = response.data;
     });
     console.log('Component mounted: category.');

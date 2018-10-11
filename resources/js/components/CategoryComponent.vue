@@ -12,16 +12,17 @@
         </select>
       </div>
     </div>
-  </li>
+  </li>  
 </template>
 <script>
 export default {
  
-  mounted(){
-      axios.get('/categories').then((response) =>{
+  mounted(){     
+      axios.get(miUrl+'/categories').then((response) =>{
         this.categories = response.data;
       });
       console.log('Component mounted: category.');
+     
 
   },
   data(){
