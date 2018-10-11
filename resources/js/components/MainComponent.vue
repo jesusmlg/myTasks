@@ -63,8 +63,8 @@
           loadTasks()
           {
             axios.get(miUrl+'/tasks',{params:{'category': this.category}}).then((response)=>{
-            this.tasks = response.data.tasks;
-            this.priorities = response.data.priorities;
+                this.tasks = response.data.tasks;
+                this.priorities = response.data.priorities;
             });
           }          
 

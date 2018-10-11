@@ -37,7 +37,7 @@
         title: '',
         description: '',
         priority:'LOW',
-        category:''
+        category:'WORK'
       }
     },
     methods:{
