@@ -53,10 +53,7 @@
           this.title = "";
           this.description ="";
           this.$emit('newTask');
-          //let task = reponse;
         });
-
-        //this.$emit('new', task);
         
       }
     }

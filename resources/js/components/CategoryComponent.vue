@@ -20,10 +20,7 @@ export default {
   mounted(){     
       axios.get(miUrl+'/categories').then((response) =>{
         this.categories = response.data;
-      });
-      console.log('Component mounted: category.');
-     
-
+      });     
   },
   data(){
     return{
