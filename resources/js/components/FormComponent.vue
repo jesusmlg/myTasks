@@ -50,15 +50,14 @@
         };
         
         axios.post(miUrl+'/tasks',params).then((response)=>{
-          console.log(response);
+          this.title = "";
+          this.description ="";
+          this.$emit('newTask');
           //let task = reponse;
         });
 
         //this.$emit('new', task);
-        this.title = "";
-        this.description ="";
-
-        this.$emit('newTask');
+        
       }
     }
   }
