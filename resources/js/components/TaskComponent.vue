@@ -1,5 +1,5 @@
 <template>
-   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" :class="'div-'+this.priority" >
+   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task" :class="'div-'+this.priority" >
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1 task-title">{{ task.title }}</h5>
             <small>{{ task.humanDate }}</small>

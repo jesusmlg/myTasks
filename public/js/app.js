@@ -47372,11 +47372,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onClickCompleteTask: function onClickCompleteTask() {
-            axios.post(miUrl + '/tasks/' + this.task.id + "/complete").then(function (response) {
-                console.log(response.data);
-            });
+            var _this = this;
 
-            this.$emit('completedTask');
+            axios.post(miUrl + '/tasks/' + this.task.id + "/complete").then(function (response) {
+                _this.$emit('completedTask');
+            });
         }
     }
 });
@@ -47393,7 +47393,7 @@ var render = function() {
     "a",
     {
       staticClass:
-        "list-group-item list-group-item-action flex-column align-items-start",
+        "list-group-item list-group-item-action flex-column align-items-start task",
       class: "div-" + this.priority,
       attrs: { href: "#" }
     },
@@ -47538,6 +47538,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     newTask: function newTask() {
+      var _this2 = this;
+
       var params = {
         title: this.title,
         description: this.description,
@@ -47546,15 +47548,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
 
       axios.post(miUrl + '/tasks', params).then(function (response) {
-        console.log(response);
-        //let task = reponse;
+        _this2.title = "";
+        _this2.description = "";
+        _this2.$emit('newTask');
       });
-
-      //this.$emit('new', task);
-      this.title = "";
-      this.description = "";
-
-      this.$emit('newTask');
     }
   }
 });
@@ -47782,6 +47779,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     //props: ['category'],
@@ -47850,23 +47849,25 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-4" }, [
-        _c(
-          "div",
-          { staticClass: "list-group " },
-          _vm._l(_vm.tasks, function(task, index) {
-            return task.priority == "low"
-              ? _c("task-component", {
-                  key: task.id,
-                  attrs: { priority: "low", task: task },
-                  on: {
-                    completedTask: function($event) {
-                      _vm.completeTask()
+        _c("div", { staticClass: "list-group" }, [
+          _c(
+            "div",
+            { staticClass: "list-group " },
+            _vm._l(_vm.tasks, function(task, index) {
+              return task.priority == "high"
+                ? _c("task-component", {
+                    key: task.id,
+                    attrs: { priority: "high", task: task },
+                    on: {
+                      completedTask: function($event) {
+                        _vm.completeTask()
+                      }
                     }
-                  }
-                })
-              : _vm._e()
-          })
-        )
+                  })
+                : _vm._e()
+            })
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }, [
@@ -47891,26 +47892,24 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "list-group" }, [
-          _c(
-            "div",
-            { staticClass: "list-group " },
-            _vm._l(_vm.tasks, function(task, index) {
-              return task.priority == "high"
-                ? _c("task-component", {
-                    key: task.id,
-                    attrs: { priority: "high", task: task },
-                    on: {
-                      completedTask: function($event) {
-                        _vm.completeTask()
-                      }
+      _c("div", { staticClass: "col-md-4 " }, [
+        _c(
+          "div",
+          { staticClass: "list-group " },
+          _vm._l(_vm.tasks, function(task, index) {
+            return task.priority == "low"
+              ? _c("task-component", {
+                  key: task.id,
+                  attrs: { priority: "low", task: task },
+                  on: {
+                    completedTask: function($event) {
+                      _vm.completeTask()
                     }
-                  })
-                : _vm._e()
-            })
-          )
-        ])
+                  }
+                })
+              : _vm._e()
+          })
+        )
       ])
     ])
   ])
@@ -48002,7 +48001,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     axios.get(miUrl + '/categories').then(function (response) {
       _this.categories = response.data;
     });
-    console.log('Component mounted: category.');
   },
   data: function data() {
     return {

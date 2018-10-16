@@ -70,6 +70,6 @@
     </div>
 </body>
 <script>
-    var miUrl = '{{ env('APP_URL') }}';
+    var miUrl = window.location.href;
 </script>
 </html>
