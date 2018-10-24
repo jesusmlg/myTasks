@@ -10520,3 +10520,8 @@ a.text-dark:focus {
   border: 1px solid #fd3030;
 }
 
+.more-less {
+  cursor: pointer;
+  padding: 0px 2px 0px 2px !important;
+}
+

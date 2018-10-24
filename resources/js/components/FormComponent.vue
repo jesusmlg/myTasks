@@ -1,5 +1,13 @@
 <template>
   <form>
+    
+    <div v-if="Object.keys(errors).length > 0" class="alert alert-danger">
+      <span v-for="(error) in errors">
+        <li v-for="(e) in error">
+          {{ e }}
+        </li>
+      </span>
+    </div>
     <form action="" v-on:submit.prevent="newTask()">
       <div class="form-row">
         <div class="col-2">
@@ -15,7 +23,6 @@
             </option>
           </select>
         </div>
-
         <div class="col-2">
           <button class="btn btn-primary btn-block">Add Task</button> 
         </div>
@@ -37,7 +44,8 @@
         title: '',
         description: '',
         priority:'LOW',
-        category:'WORK'
+        category:'WORK',
+        errors: []
       }
     },
     methods:{
@@ -52,7 +60,10 @@
         axios.post(miUrl+'/tasks',params).then((response)=>{
           this.title = "";
           this.description ="";
-          this.$emit('newTask');
+          this.$emit('newTask');          
+        }).catch((error)=>{
+          this.errors = error.response.data.errors;
+          console.log(this.errors.length);
         });
         
       }

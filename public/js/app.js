@@ -47359,6 +47359,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['task', 'priority'],
@@ -47367,7 +47373,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('Component Task Mounted.');
     },
     data: function data() {
-        return {};
+        return {
+            description: "",
+            moreLess: "more"
+        };
     },
 
     methods: {
@@ -47377,6 +47386,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(miUrl + '/tasks/' + this.task.id + "/complete").then(function (response) {
                 _this.$emit('completedTask');
             });
+        },
+        onClickShowDescription: function onClickShowDescription() {
+
+            if (this.moreLess == "more") {
+                this.moreLess = "less";
+                this.description = this.task.description;
+            } else {
+                this.moreLess = "more";
+                this.description = "";
+            }
         }
     }
 });
@@ -47390,12 +47409,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "a",
+    "span",
     {
       staticClass:
         "list-group-item list-group-item-action flex-column align-items-start task",
-      class: "div-" + this.priority,
-      attrs: { href: "#" }
+      class: "div-" + this.priority
     },
     [
       _c("div", { staticClass: "d-flex w-100 justify-content-between" }, [
@@ -47406,8 +47424,25 @@ var render = function() {
         _c("small", [_vm._v(_vm._s(_vm.task.humanDate))])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "mb-1 text-justify task-description" }, [
-        _vm._v(_vm._s(_vm.task.description))
+      _c("p", [
+        _vm.task.description != null
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-info btn-outline-dark more-less",
+                on: {
+                  click: function($event) {
+                    _vm.onClickShowDescription()
+                  }
+                }
+              },
+              [_vm._v(_vm._s(_vm.moreLess))]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-justify task-description" }, [
+        _vm._v("\n         " + _vm._s(_vm.description) + "\n     ")
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "text-right" }, [
@@ -47517,6 +47552,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['priorities'],
@@ -47532,7 +47574,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       title: '',
       description: '',
       priority: 'LOW',
-      category: 'WORK'
+      category: 'WORK',
+      errors: []
     };
   },
 
@@ -47551,6 +47594,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.title = "";
         _this2.description = "";
         _this2.$emit('newTask');
+      }).catch(function (error) {
+        _this2.errors = error.response.data.errors;
+        console.log(_this2.errors.length);
       });
     }
   }
@@ -47565,6 +47611,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("form", [
+    Object.keys(_vm.errors).length > 0
+      ? _c(
+          "div",
+          { staticClass: "alert alert-danger" },
+          _vm._l(_vm.errors, function(error) {
+            return _c(
+              "span",
+              _vm._l(error, function(e) {
+                return _c("li", [_vm._v("\n        " + _vm._s(e) + "\n      ")])
+              })
+            )
+          })
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c(
       "form",
       {
