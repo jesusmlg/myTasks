@@ -47364,7 +47364,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['task', 'priority'],
@@ -47847,6 +47846,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     //props: ['category'],
@@ -47865,7 +47874,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             tasks: [],
             priorities: [],
-            category: 'WORK'
+            category: 'WORK',
+            taskStateText: 'Finished Tasks',
+            taskState: 'pending'
         };
     },
 
@@ -47879,10 +47890,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadTasks: function loadTasks() {
             var _this2 = this;
 
-            axios.get(miUrl + '/tasks', { params: { 'category': this.category } }).then(function (response) {
+            axios.get(miUrl + '/tasks', { params: { 'category': this.category, 'state': this.taskState } }).then(function (response) {
                 _this2.tasks = response.data.tasks;
                 _this2.priorities = response.data.priorities;
             });
+        },
+        showTaskState: function showTaskState() {
+
+            if (this.taskState == 'pending') {
+                this.taskStateText = "Pending Tasks";
+                this.taskState = "done";
+            } else if (this.taskState == 'done') {
+                this.taskStateText = "Finished Tasks";
+                this.taskState = "pending";
+            }
+
+            this.loadTasks();
         }
     }
 
@@ -47897,6 +47920,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn",
+              class: [
+                _vm.taskState == "pending" ? "btn-success" : "btn-warning"
+              ],
+              on: {
+                click: function($event) {
+                  _vm.showTaskState()
+                }
+              }
+            },
+            [
+              _vm._v(
+                "\n              " + _vm._s(_vm.taskStateText) + "\n          "
+              )
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c(
         "div",

@@ -9,8 +9,7 @@
         </p>
         <p class="text-justify task-description">
             {{ description }}
-        </p>
-        
+        </p>        
         <p class="text-right">
             <button type="button" class="btn task-btn" v-on:click="onClickCompleteTask()" >Done</button>
         </p>

@@ -22,8 +22,8 @@ class TaskController extends Controller
 
         return [
             'tasks' => Task::where('user_id', auth()->id())
-                            ->where('state', '<>', 'done')
                             ->where('category', $request->category)
+                            ->where('state', $request->state)
                             ->orderBy('created_at', 'DESC')
                             ->get(),
             'priorities' => Priority::getPriorities()
