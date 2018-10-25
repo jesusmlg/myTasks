@@ -9,21 +9,24 @@
       </span>
     </div>
     <form action="" v-on:submit.prevent="newTask()">
-      <div class="form-row">
-        <div class="col-2">
+      <div class="form-group row">
+        <div class="col-8">
           <input type="text" class="form-control" placeholder="Title" v-model="title"> 
         </div>
-        <div class="col-6">
-          <input type="text" class="form-control" placeholder="Description" v-model="description">
-        </div>
-        <div class="col-2">
+       
+        <div class="col-4">
           <select class="form-control" v-model="priority">
             <option v-for="(priority,index) in priorities" v-bind:value="priority" :key="index">
               {{ priority }}
             </option>
           </select>
+        </div>        
+      </div>
+      <div class="form-group row">
+        <div class="col-9">
+          <input type="text" class="form-control" placeholder="Description" v-model="description">
         </div>
-        <div class="col-2">
+        <div class="col-3">
           <button class="btn btn-primary btn-block">Add Task</button> 
         </div>
       </div>

@@ -8,7 +8,7 @@
       <p>
       </p>
       <div class="row justify-content-center">                  
-          <div class="col-md-4">
+          <div class="col-md-4 group-task" >
               <div class="list-group">
                 <div class="list-group ">
                    <task-component v-if="task.priority=='high'"  v-for="(task,index) in tasks" :key="task.id" :priority="'high'" :task="task" @completedTask="completeTask()"></task-component>
@@ -16,7 +16,7 @@
               </div>
           </div>
           
-          <div class="col-md-4">
+          <div class="col-md-4 group-task">
               <div class="list-group">
                 <div class="list-group ">
                     <task-component v-if="task.priority=='medium'"  v-for="(task,index) in tasks" :key="task.id" :priority="'medium'" :task="task" @completedTask="completeTask()"></task-component>
@@ -25,7 +25,7 @@
           </div>
 
             
-          <div class="col-md-4 ">
+          <div class="col-md-4 group-task">
               <div class="list-group ">
                   <task-component v-if="task.priority=='low'" v-for="(task,index) in tasks" :key="task.id" :priority="'low'" :task="task" @completedTask="completeTask()"></task-component>
               </div>

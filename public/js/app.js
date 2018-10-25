@@ -47559,6 +47559,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['priorities'],
@@ -47638,8 +47641,8 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "form-row" }, [
-          _c("div", { staticClass: "col-2" }, [
+        _c("div", { staticClass: "form-group row" }, [
+          _c("div", { staticClass: "col-8" }, [
             _c("input", {
               directives: [
                 {
@@ -47663,31 +47666,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Description" },
-              domProps: { value: _vm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.description = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-2" }, [
+          _c("div", { staticClass: "col-4" }, [
             _c(
               "select",
               {
@@ -47724,6 +47703,32 @@ var render = function() {
                 )
               })
             )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group row" }, [
+          _c("div", { staticClass: "col-9" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Description" },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            })
           ]),
           _vm._v(" "),
           _vm._m(0)
@@ -47737,7 +47742,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
+    return _c("div", { staticClass: "col-3" }, [
       _c("button", { staticClass: "btn btn-primary btn-block" }, [
         _vm._v("Add Task")
       ])
@@ -47909,7 +47914,7 @@ var render = function() {
     _c("p"),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "col-md-4 group-task" }, [
         _c("div", { staticClass: "list-group" }, [
           _c(
             "div",
@@ -47931,7 +47936,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "col-md-4 group-task" }, [
         _c("div", { staticClass: "list-group" }, [
           _c(
             "div",
@@ -47953,7 +47958,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 " }, [
+      _c("div", { staticClass: "col-md-4 group-task" }, [
         _c(
           "div",
           { staticClass: "list-group " },
