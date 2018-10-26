@@ -11,7 +11,8 @@
             {{ description }}
         </p>        
         <p class="text-right">
-            <button type="button" class="btn task-btn" v-on:click="onClickCompleteTask()" >Done</button>
+            <button type="button" class="btn task-btn task-btn-done" v-if="task.state === 'pending' " v-on:click="onClickCompleteTask()" >Done</button>
+            <button type="button" class="btn task-btn task-btn-delete" v-else-if="task.state === 'done' " v-on:click="onClickDeleteTask()" >Delete</button>
         </p>
     </span>
 </template>
@@ -33,6 +34,11 @@
         methods:{
             onClickCompleteTask(){
                 axios.post(miUrl+'/tasks/'+this.task.id+"/complete").then((response) =>{
+                    this.$emit('completedTask');
+                });            
+            },
+            onClickDeleteTask(){
+                axios.delete(miUrl+'/tasks/'+this.task.id).then((response) =>{
                     this.$emit('completedTask');
                 });            
             },
