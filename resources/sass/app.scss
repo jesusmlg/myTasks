@@ -52,11 +52,19 @@
   color: #888888;
 }
 .task-btn:hover{
-  background-color: rgb(253, 48, 48);
-  color: #fff;
-  border: 1px solid rgb(253, 48, 48);
+
 }
 .more-less{
   cursor: pointer ;
   padding: 0px 2px 0px 2px !important;
+}
+.task-btn-done:hover{
+  background-color: rgb(0, 187, 47);
+  color: #fff;
+  border: 1px solid rgb(0, 187, 47);
+}
+.task-btn-delete:hover{
+  background-color: rgb(253, 48, 48);
+  color: #fff;
+  border: 1px solid rgb(253, 48, 48);
 }

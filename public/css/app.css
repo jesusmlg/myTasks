@@ -10514,14 +10514,20 @@ a.text-dark:focus {
   color: #888888;
 }
 
-.task-btn:hover {
-  background-color: #fd3030;
-  color: #fff;
-  border: 1px solid #fd3030;
-}
-
 .more-less {
   cursor: pointer;
   padding: 0px 2px 0px 2px !important;
+}
+
+.task-btn-done:hover {
+  background-color: #00bb2f;
+  color: #fff;
+  border: 1px solid #00bb2f;
+}
+
+.task-btn-delete:hover {
+  background-color: #fd3030;
+  color: #fff;
+  border: 1px solid #fd3030;
 }
 

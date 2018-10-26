@@ -47364,6 +47364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['task', 'priority'],
@@ -47384,6 +47385,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post(miUrl + '/tasks/' + this.task.id + "/complete").then(function (response) {
                 _this.$emit('completedTask');
+            });
+        },
+        onClickDeleteTask: function onClickDeleteTask() {
+            var _this2 = this;
+
+            axios.delete(miUrl + '/tasks/' + this.task.id).then(function (response) {
+                _this2.$emit('completedTask');
             });
         },
         onClickShowDescription: function onClickShowDescription() {
@@ -47445,19 +47453,35 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "text-right" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn task-btn",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                _vm.onClickCompleteTask()
-              }
-            }
-          },
-          [_vm._v("Done")]
-        )
+        _vm.task.state === "pending"
+          ? _c(
+              "button",
+              {
+                staticClass: "btn task-btn task-btn-done",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.onClickCompleteTask()
+                  }
+                }
+              },
+              [_vm._v("Done")]
+            )
+          : _vm.task.state === "done"
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn task-btn task-btn-delete",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.onClickDeleteTask()
+                    }
+                  }
+                },
+                [_vm._v("Delete")]
+              )
+            : _vm._e()
       ])
     ]
   )
