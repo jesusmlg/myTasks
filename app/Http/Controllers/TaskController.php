@@ -54,7 +54,7 @@ class TaskController extends Controller
         
         $task->save();
 
-        return $task;
+        return response()->json(['result' => 'ok']);
 
     }
 

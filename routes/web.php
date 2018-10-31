@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::apiResource('tasks', 'TaskController');
-Route::post('/tasks/{task}/complete', 'TaskController@complete');
+Route::post('/tasks/{task}/complete', 'TaskController@complete')->name('tasks.complete');
 
 //combo categories
 
